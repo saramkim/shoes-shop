@@ -15,10 +15,10 @@ const useStore2 = create((set) => ({
 
   cartAdd: (a) =>
     set((state) => {
-      let 비교 = state.cartList.findIndex((e) => e.id == a.id);
+      let 비교 = state.cartList.findIndex((e) => e.id === a.id);
 
       if (비교 >= 0) {
-        state.cartList[비교].stock == 0
+        state.cartList[비교].stock === 0
           ? alert("재고없음")
           : state.cartList[비교].quant++ && state.cartList[비교].stock--;
       } else {
@@ -28,15 +28,15 @@ const useStore2 = create((set) => ({
 
   quantPlus: (a) =>
     set((state) => {
-      let 비교 = state.cartList.findIndex((e) => e.id == a);
-      state.cartList[비교].stock == 0
+      let 비교 = state.cartList.findIndex((e) => e.id === a);
+      state.cartList[비교].stock === 0
         ? alert("재고없음")
         : state.cartList[비교].stock-- && state.cartList[비교].quant++;
     }),
 
   quantMinus: (a) =>
     set((state) => {
-      let 비교 = state.cartList.findIndex((e) => e.id == a);
+      let 비교 = state.cartList.findIndex((e) => e.id === a);
       state.cartList[비교].quant !== 0 &&
         state.cartList[비교].quant-- &&
         state.cartList[비교].stock++;
@@ -44,7 +44,7 @@ const useStore2 = create((set) => ({
 
   delist: (a) =>
     set((state) => {
-      let 비교 = state.cartList.findIndex((e) => e.id == a);
+      let 비교 = state.cartList.findIndex((e) => e.id === a);
       state.cartList.splice(비교, 1);
     }),
 }));

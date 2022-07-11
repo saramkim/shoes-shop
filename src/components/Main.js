@@ -19,6 +19,7 @@ function Main({ count }) {
                 src={`https://codingapple1.github.io/shop/shoes${a.id + 1}.jpg`}
                 width="100%"
                 onClick={() => navigate(`detail/${a.id}`)}
+                alt="shoes"
               />
               <h4>{a.title}</h4>
               <p>
@@ -28,10 +29,10 @@ function Main({ count }) {
           ))}
         </div>
 
-        {count.current == 2 ? null : (
+        {count.current === 2 ? null : (
           <button
             onClick={() => {
-              if (count.current == 0) {
+              if (count.current === 0) {
                 axios
                   .get("https://codingapple1.github.io/shop/data2.json")
                   .then((a) => {
@@ -39,7 +40,7 @@ function Main({ count }) {
                     count.current++;
                   })
                   .catch(() => {});
-              } else if (count.current == 1) {
+              } else if (count.current === 1) {
                 axios
                   .get("https://codingapple1.github.io/shop/data3.json")
                   .then((a) => {

@@ -71,6 +71,7 @@ function Watched() {
               className="watched"
               onClick={() => navigate(`/detail/${a}`)}
               key={a}
+              alt="shoes"
             />
           ))}
     </>

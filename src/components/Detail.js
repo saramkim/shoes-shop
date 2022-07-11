@@ -30,17 +30,18 @@ function Detail() {
     if (저장된상품 === null) {
       저장된상품 = [];
     } else {
-      let 비교 = 저장된상품.findIndex((a) => a == 해당상품.id);
+      let 비교 = 저장된상품.findIndex((a) => a === 해당상품.id);
       비교 >= 0 && 저장된상품.splice(비교, 1);
     }
 
     저장된상품.unshift(해당상품.id);
     localStorage.setItem("최근본상품", JSON.stringify(저장된상품));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="container">
-      {alert == true ? (
+      {alert === true ? (
         <div className="alert alert-warning">2초 이내 구매시 무료</div>
       ) : null}
 
@@ -51,6 +52,7 @@ function Detail() {
               해당상품.id + 1
             }.jpg`}
             width="100%"
+            alt="shoes"
           />
         </div>
         <div className="col-md-6 ">
@@ -88,7 +90,7 @@ function Detail() {
           >
             장바구니
           </button>
-          <p>재고 : {재고상품 == undefined ? 10 : 재고상품.stock}</p>
+          <p>재고 : {재고상품 === undefined ? 10 : 재고상품.stock}</p>
         </div>
       </div>
       <Nav variant="tabs" defaultActiveKey="link-1">
