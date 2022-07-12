@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { useStore2 } from "./Zustand";
+import { useNavigate } from "react-router-dom";
+import { useStore2 } from "../Zustand";
 
 function Cart() {
   const cartList = useStore2((state) => state.cartList);
@@ -11,11 +12,13 @@ function Cart() {
     return a + b.price * b.quant;
   }, 0);
   const 배송비 = 상품수 > 3 ? 0 : 3000;
-  let [rr, rr_] = useState(true);
+  const [rr, rr_] = useState(true);
+  const navigate = useNavigate();
+  const [notice, setNotice] = useState(true);
 
   useEffect(() => {
-    return;
-  });
+    상품수 > 3 ? setNotice(false) : setNotice(true);
+  }, [상품수]);
 
   return (
     <>
@@ -33,6 +36,9 @@ function Cart() {
           <CartIn rr={rr} rr_={rr_} />
         </tbody>
       </Table>
+      {notice === true && (
+        <div className="alert alert-warning">4개 이상 주문시 배송비 무료</div>
+      )}
 
       <div className="orderBar">
         <div className="orderBar__left">
@@ -58,7 +64,7 @@ function Cart() {
             <button
               className="order-btn"
               onClick={() => {
-                alert("뻥이야");
+                alert("To be continued");
               }}
             >
               구매하기
@@ -66,10 +72,10 @@ function Cart() {
             <button
               className="order-btn"
               onClick={() => {
-                alert("다시 생각해보자");
+                navigate("/event");
               }}
             >
-              퇴각하기
+              할인받기
             </button>
           </div>
         </div>

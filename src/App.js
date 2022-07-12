@@ -1,9 +1,10 @@
 import "./App.css";
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { Routes, Route, useNavigate, Outlet } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Main from "./components/Main";
 import Detail from "./components/Detail";
 import Cart from "./components/Cart";
+import { Event, Event1, Event2, Event3 } from "./components/Event";
 import { Suspense, useRef } from "react";
 
 function App() {
@@ -14,10 +15,10 @@ function App() {
     <div className="App">
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand onClick={() => navigate("/")}>Shop</Navbar.Brand>
+          <Navbar.Brand onClick={() => navigate("/")}>Shoes Store</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
-            <Nav.Link onClick={() => navigate("/detail")}>Detail</Nav.Link>
+            <Nav.Link onClick={() => navigate("/event")}>Event</Nav.Link>
             <Nav.Link onClick={() => navigate("/cart")}>Cart</Nav.Link>
           </Nav>
         </Container>
@@ -32,11 +33,9 @@ function App() {
           <Route path="/detail/:id" element={<Detail />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/event" element={<Event />}>
-            <Route
-              path="one"
-              element={<p>첫 주문시 양배추즙 서비스</p>}
-            ></Route>
-            <Route path="two" element={<p>생일기념 쿠폰 받기</p>}></Route>
+            <Route path="1" element={<Event1 />}></Route>
+            <Route path="2" element={<Event2 />}></Route>
+            <Route path="3" element={<Event3 />}></Route>
           </Route>
           <Route
             path="*"
@@ -48,18 +47,9 @@ function App() {
   );
 }
 
-function Event() {
-  return (
-    <div>
-      <h4>오늘의 이벤트</h4>
-      <Outlet></Outlet>
-    </div>
-  );
-}
-
 function Watched() {
   const navigate = useNavigate();
-  let 최근본상품 = JSON.parse(localStorage.getItem("최근본상품"));
+  let 최근본상품 = JSON.parse(sessionStorage.getItem("최근본상품"));
 
   return (
     <>

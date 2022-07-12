@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useStore } from "./Zustand";
+import { useStore } from "../Zustand";
 import axios from "axios";
 
 function Main({ count }) {
@@ -29,20 +29,12 @@ function Main({ count }) {
           ))}
         </div>
 
-        {count.current === 2 ? null : (
+        {count.current === 0 && (
           <button
             onClick={() => {
               if (count.current === 0) {
                 axios
                   .get("https://codingapple1.github.io/shop/data2.json")
-                  .then((a) => {
-                    setData(a.data);
-                    count.current++;
-                  })
-                  .catch(() => {});
-              } else if (count.current === 1) {
-                axios
-                  .get("https://codingapple1.github.io/shop/data3.json")
                   .then((a) => {
                     setData(a.data);
                     count.current++;

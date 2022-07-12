@@ -1,5 +1,5 @@
 import create from "zustand";
-import Data from "./Data";
+import Data from "./components/Data";
 
 const useStore = create((set) => ({
   data: Data,

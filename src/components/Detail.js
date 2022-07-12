@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useStore, useStore2 } from "./Zustand";
+import { useStore, useStore2 } from "../Zustand";
 import { Nav } from "react-bootstrap";
 
 function Detail() {
@@ -9,15 +9,17 @@ function Detail() {
   const cartAdd = useStore2((state) => state.cartAdd);
   const cartList = useStore2((state) => state.cartList);
   let { id } = useParams();
-  let 해당상품 = data.find((a) => a.id === id);
-  let 재고상품 = cartList.find((a) => a.id === id);
-  let [alert, setAlert] = useState(true);
+  // eslint-disable-next-line
+  let 해당상품 = data.find((a) => a.id == id);
+  // eslint-disable-next-line
+  let 재고상품 = cartList.find((a) => a.id == id);
+  let [notice, setNotice] = useState(true);
   let [tabs, setTabs] = useState("info");
   let [rr, rr_] = useState(true);
 
   useEffect(() => {
     let timer = setTimeout(() => {
-      setAlert(false);
+      setNotice(false);
     }, 2000);
     return () => {
       clearTimeout(timer);
@@ -25,7 +27,7 @@ function Detail() {
   }, []);
 
   useEffect(() => {
-    let 저장된상품 = JSON.parse(localStorage.getItem("최근본상품"));
+    let 저장된상품 = JSON.parse(sessionStorage.getItem("최근본상품"));
 
     if (저장된상품 === null) {
       저장된상품 = [];
@@ -35,14 +37,14 @@ function Detail() {
     }
 
     저장된상품.unshift(해당상품.id);
-    localStorage.setItem("최근본상품", JSON.stringify(저장된상품));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    sessionStorage.setItem("최근본상품", JSON.stringify(저장된상품));
+    // eslint-disable-next-line
   }, []);
 
   return (
     <div className="container">
-      {alert === true ? (
-        <div className="alert alert-warning">2초 이내 구매시 무료</div>
+      {notice === true ? (
+        <div className="alert alert-warning plus">다시 오지 않을 가격</div>
       ) : null}
 
       <div className="row mt-5 mb-5">
@@ -55,7 +57,7 @@ function Detail() {
             alt="shoes"
           />
         </div>
-        <div className="col-md-6 ">
+        <div className="col-md-6 detail-contens">
           <h4>{data[해당상품.id].title}</h4>
           <p>{data[해당상품.id].content}</p>
           <p>{data[해당상품.id].price}</p>
@@ -93,7 +95,7 @@ function Detail() {
           <p>재고 : {재고상품 === undefined ? 10 : 재고상품.stock}</p>
         </div>
       </div>
-      <Nav variant="tabs" defaultActiveKey="link-1">
+      <Nav variant="tabs" defaultActiveKey="link-0">
         <Nav.Item>
           <Nav.Link eventKey="link-0" onClick={() => setTabs("info")}>
             info
