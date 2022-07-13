@@ -72,7 +72,7 @@ function Cart() {
             <button
               className="order-btn"
               onClick={() => {
-                navigate("/event");
+                navigate("/shoes-store/event");
               }}
             >
               할인받기

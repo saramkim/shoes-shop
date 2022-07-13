@@ -18,7 +18,7 @@ function Main({ count }) {
               <img
                 src={`https://codingapple1.github.io/shop/shoes${a.id + 1}.jpg`}
                 width="100%"
-                onClick={() => navigate(`detail/${a.id}`)}
+                onClick={() => navigate(`/shoes-store/detail/${a.id}`)}
                 alt="shoes"
               />
               <h4>{a.title}</h4>

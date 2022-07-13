@@ -64,7 +64,7 @@ function Detail() {
           <button
             className="btn btn-danger"
             onClick={() => {
-              navigate("../../cart");
+              navigate("/shoes-store/cart");
               cartAdd({
                 id: 해당상품.id,
                 title: 해당상품.title,

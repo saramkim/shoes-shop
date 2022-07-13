@@ -13,7 +13,7 @@ export function Event() {
         <div
           className="event-box col-md-3"
           onClick={() => {
-            navigate("/event/1");
+            navigate("/shoes-store/event/1");
           }}
         >
           1
@@ -21,7 +21,7 @@ export function Event() {
         <div
           className="event-box col-md-3"
           onClick={() => {
-            navigate("/event/2");
+            navigate("/shoes-store/event/2");
           }}
         >
           2
@@ -29,7 +29,7 @@ export function Event() {
         <div
           className="event-box col-md-3"
           onClick={() => {
-            navigate("/event/3");
+            navigate("/shoes-store/event/3");
           }}
         >
           3

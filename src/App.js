@@ -15,11 +15,17 @@ function App() {
     <div className="App">
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand onClick={() => navigate("/")}>Shoes Store</Navbar.Brand>
+          <Navbar.Brand onClick={() => navigate("/shoes-store")}>
+            Shoes Store
+          </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
-            <Nav.Link onClick={() => navigate("/event")}>Event</Nav.Link>
-            <Nav.Link onClick={() => navigate("/cart")}>Cart</Nav.Link>
+            <Nav.Link onClick={() => navigate("/shoes-store")}>Home</Nav.Link>
+            <Nav.Link onClick={() => navigate("/shoes-store/event")}>
+              Event
+            </Nav.Link>
+            <Nav.Link onClick={() => navigate("/shoes-store/cart")}>
+              Cart
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -29,10 +35,10 @@ function App() {
       </div>
       <Suspense fallback={<div>로딩중</div>}>
         <Routes>
-          <Route path="/" element={<Main count={count} />}></Route>
-          <Route path="/detail/:id" element={<Detail />}></Route>
-          <Route path="/cart" element={<Cart />}></Route>
-          <Route path="/event" element={<Event />}>
+          <Route path="/shoes-store/" element={<Main count={count} />}></Route>
+          <Route path="/shoes-store/detail/:id" element={<Detail />}></Route>
+          <Route path="/shoes-store/cart" element={<Cart />}></Route>
+          <Route path="/shoes-store/event" element={<Event />}>
             <Route path="1" element={<Event1 />}></Route>
             <Route path="2" element={<Event2 />}></Route>
             <Route path="3" element={<Event3 />}></Route>
@@ -59,7 +65,7 @@ function Watched() {
             <img
               src={`https://codingapple1.github.io/shop/shoes${a + 1}.jpg`}
               className="watched"
-              onClick={() => navigate(`/detail/${a}`)}
+              onClick={() => navigate(`/shoes-store/detail/${a}`)}
               key={a}
               alt="shoes"
             />
